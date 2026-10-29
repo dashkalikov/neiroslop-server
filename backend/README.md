@@ -1,4 +1,4 @@
-# virtual-casino-server
+# neiroslop-server
 
 Серверная часть учебного проекта «Виртуальное казино — NEIROSLOP BURMALDA». Приложение на Python и FastAPI предоставляет API для игр с виртуальными монетами. Денежные платежи и вывод средств не предусмотрены.
 
@@ -10,7 +10,7 @@
 
 ```mermaid
 flowchart LR
-    Client[virtual-casino-client] <-->|HTTP / JSON| API[FastAPI]
+    Client[neiroslop-client] <-->|HTTP / JSON| API[FastAPI]
     API --> Rules[Игровые правила]
     API <-->|SQLAlchemy / asyncpg| DB[(PostgreSQL)]
 ```
@@ -21,8 +21,8 @@ flowchart LR
 
 ## Связанные компоненты
 
-- `virtual-casino-client` — браузерный интерфейс.
-- `virtual-casino-database` — описание структуры хранения и средства для PostgreSQL.
+- [neiroslop-client](https://github.com/dashkalikov/neiroslop-client) — браузерный интерфейс.
+- [neiroslop-database](https://github.com/dashkalikov/neiroslop-database) — описание структуры хранения и средства для PostgreSQL.
 
 Текущий прототип создаёт отсутствующие таблицы при старте. Версионируемые миграции и полноценная регистрация пользователей относятся к дальнейшему развитию.
 
@@ -32,4 +32,4 @@ flowchart LR
 
 CI/CD будет добавлен отдельным этапом.
 
-Общий обзор проекта: [архитектура](docs/architecture.ru.md).
+Общий обзор проекта: [архитектура](../docs/architecture.ru.md).
