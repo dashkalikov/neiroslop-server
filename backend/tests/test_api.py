@@ -104,3 +104,21 @@ def test_big_bass_fisherman_progress_survives_refresh_and_replay(client,monkeypa
     assert client.post('/api/spin',json=request).json()==result
     refreshed=next(r for r in client.get('/api/session').json()['rounds'] if r['game']=='bigbass')
     assert refreshed['feature']==result['feature']
+
+
+def test_saloon_round_is_saved_and_duplicate_request_cannot_charge_twice(client):
+    from uuid import uuid4
+    client.get('/api/session')
+    catalog = client.get('/api/games').json()
+    assert any(game['id'] == 'saloon' for game in catalog)
+    request = {'game':'saloon','bet':37,'requestId':str(uuid4())}
+    response = client.post('/api/spin', json=request)
+    assert response.status_code == 200
+    result = response.json()
+    assert result['game'] == 'saloon'
+    assert result['cost'] == 37
+    assert len(result['grid']) == 3
+    assert result['balance'] == 9963 + result['payout']
+    assert client.post('/api/spin', json=request).json() == result
+    assert client.get('/api/rounds/' + result['id']).json() == result
+    assert client.get('/api/session').json()['balance'] == result['balance']

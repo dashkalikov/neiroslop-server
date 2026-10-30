@@ -3,6 +3,7 @@
 from secrets import choice
 
 GAMES = {
+    "saloon": {"name": "Saloon Luck", "bonus": 8, "multiplier": 2, "theme": "Mechanical", "reels": 3},
     "moon": {"name": "Moonlight Magic", "bonus": 8, "multiplier": 1, "theme": "Fantasy", "reels": 5},
     "temple": {"name": "Temple of Gold", "bonus": 10, "multiplier": 1, "theme": "Adventure", "reels": 5},
     "neon": {"name": "Neon Nights", "bonus": 6, "multiplier": 2, "theme": "Neon", "reels": 5},
